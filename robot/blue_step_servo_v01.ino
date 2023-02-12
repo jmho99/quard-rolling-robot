@@ -81,25 +81,19 @@ int x33 = 30; //크립다리길게각도
 int y33 = 0;
 int z33 = 0;
 
-int b11 = 30; //롤링다리들때각도
+int b11 = 30; //롤링으로 변환시 다리들때각도
 int c11 = 30;
 
-int a22 = 70; //롤링다리짧게각도
+int a22 = 70; //롤링으로 변환시 다리짧게각도
 int b22 = 0;
 int c22 = 0;
 
-int a33 = 30; //롤링다리길게각도
+int a33 = 30; //롤링으로 변환시 다리길게각도
 int b33 = 0;
 int c33 = 0;
 
-int b44 = 120; //
+int b44 = 120; //롤링으로 변환시
 int c44 = 45;
-
-int b55 = 0; //
-int c55 = 0;
-
-int b66 = 0; //
-int c66 = 0;
 
 int Servoinputlast[12];
 int Servoinput[12] = {x01+a33,x02-a33,x03+a33,x04-a33,
@@ -457,6 +451,7 @@ void stepstatus() {
   Serial.print("  ||  stepper2angle = "); Serial.println(Angle2);
   //Serial.print("  ||  stepper2distance2 = "); Serial.println(Distance2);
 }
+
 void go_forward() {
   if (
     Servoinput[0] == x01 &&
@@ -600,12 +595,9 @@ void go_forward() {
     Servoinput[11] = z04;
     allservo();
   }
-
 }
 
 void go_backward() {
-
-
   if (
     Servoinput[0] == x01 &&
     Servoinput[1] == x02 &&
@@ -748,12 +740,9 @@ void go_backward() {
     Servoinput[11] = z04;
     allservo();
   }
-
 }
 
 void turn_left() {
-
-
   if (
     Servoinput[0] == x01 &&
     Servoinput[1] == x02 &&
@@ -883,8 +872,6 @@ void turn_left() {
     allservo();
   }
 
-
-
   else if (
     Servoinput[0] == x01 &&
     Servoinput[1] == x02 - x33 &&
@@ -920,12 +907,9 @@ void turn_left() {
     Servoinput[11] = z04 - z22;
     allservo();
   }
-
 }
 
 void turn_right() {
-
-
   if (
     Servoinput[0] == x01 &&
     Servoinput[1] == x02 &&
@@ -1055,8 +1039,6 @@ void turn_right() {
     allservo();
   }
 
-  //
-
   else if (
     Servoinput[0] == x01 &&
     Servoinput[1] == x02 + x22 &&
@@ -1092,18 +1074,15 @@ void turn_right() {
     Servoinput[8] = z01 + z22;
     allservo();
   }
-
 }
 
 void to_rolling() {
-
-
   if (
     Servoinput[0] == x01 &&
     Servoinput[1] == x02 &&
     Servoinput[2] == x03 &&
     Servoinput[3] == x04) {
-
+//3번다리 1자로변형
     Servoinput[6] = y03 - b11;
     Servoinput[10] = z03 + c11;
     allservo();
@@ -1114,7 +1093,7 @@ void to_rolling() {
     Servoinput[6] = y03 + b33;
     Servoinput[10] = z03 - c33;
     allservo();
-
+//1번다리 1자로변형
     Servoinput[4] = y01 - b11;
     Servoinput[8] = z01 + c11;
     allservo();
@@ -1125,7 +1104,7 @@ void to_rolling() {
     Servoinput[4] = y01 + b33;
     Servoinput[8] = z01 - c33;
     allservo();
-
+//4번다리 1자로변형
     Servoinput[7] = y04 + b11;
     Servoinput[11] = z04 - c11;
     allservo();
@@ -1136,7 +1115,7 @@ void to_rolling() {
     Servoinput[7] = y04 - b33;
     Servoinput[11] = z04 + c33;
     allservo();
-
+//2번다리 1자로변형
     Servoinput[5] = y02 + b11;
     Servoinput[9] = z02 - c11;
     allservo();
@@ -1147,38 +1126,36 @@ void to_rolling() {
     Servoinput[5] = y02 - b33;
     Servoinput[9] = z02 + c33;
     allservo();
-
+//1,3번 다리의 2,3관절 접음
     Servoinput[4] = y01 + b44;
     Servoinput[8] = z01 - c44;
     Servoinput[6] = y03 + b44;
     Servoinput[10] = z03 - c44;
     allservo();
-
+//2,4번 다리의 2,3관절 올림
     Servoinput[5] = y02;
     Servoinput[9] = z02 + 15;
-    Servoinput[6] = y03 + b44;
-    Servoinput[10] = z03 - c44;
     Servoinput[7] = y04;
     Servoinput[11] = z04 + 15;
     allservo();
-
+//2,4번 다리의 2관절 내림
     Servoinput[5] = y02 + 60;
     Servoinput[7] = y04 + 60;
     allservo();
-
+//2,4번 다리의 3관절 조정
     Servoinput[9] = z02 + 15 - 75;
     Servoinput[11] = z04 + 15 - 75;
     allservo();
-
+//2,4번 다리의 2관절 완전히 접힘
     Servoinput[5] = y02 + 60 + 105;
     Servoinput[7] = y04 + 60 + 105;
     allservo();
-
+//1,3번 다리의 2관절 완전히 접힘
     Servoinput[4] = y01 + b44 + 35;
     Servoinput[6] = y03 + b44 + 35;
     allservo();
   }
-
+//아래 else if는 다리를 모두 x01,x02,x03,x04로 만들어주는 작업
   else if (
     Servoinput[0] == x01 &&
     Servoinput[1] == x02 + x22 &&
@@ -1330,12 +1307,9 @@ void to_rolling() {
     Servoinput[11] = z04;
     allservo();
   }
-
 }
 
 void to_walking() {
-
-
   if (
     Servoinput[0] == x01 + a33 &&
     Servoinput[1] == x02 - a33 &&
@@ -1349,29 +1323,29 @@ void to_walking() {
     Servoinput[9] == z02 + 15 - 75 &&
     Servoinput[10] == z03 - c44 &&
     Servoinput[11] == z04 + 15 - 75) {
-
+//1,3번 다리의 2관절 내림
     Servoinput[4] = y01 + b44;
     Servoinput[6] = y03 + b44;
     allservo();
-
+//2,4번 다리의 2관절 올림
     Servoinput[5] = y02 + 60 + 80;
     Servoinput[7] = y04 + 60 + 80;
     allservo();
-
+//2,4번 다리의 3관절 내림
     Servoinput[9] = z02 + 15 - 75 + 30;
     Servoinput[11] = z04 + 15 - 75 + 30;
     allservo();
-
+//2,4번 다리의 2,3관절 땅에 닿음
     Servoinput[5] = y02 + 60 + 20;
     Servoinput[7] = y04 + 60 + 20;
     Servoinput[9] = z02 + 15 - 75;
     Servoinput[11] = z04 + 15 - 75;
     allservo();
-
+//2,4번 다리의 3관절 조정
     Servoinput[9] = z02 + 15;
     Servoinput[11] = z04 + 15;
     allservo();
-
+//모든 다리의 2,3관절 조정->이때 모든 다리가 펼쳐짐
     Servoinput[4] == y01 + b33;
     Servoinput[5] == y02 - b33;
     Servoinput[6] == y03 + b33;
@@ -1381,7 +1355,7 @@ void to_walking() {
     Servoinput[10] == z03 - c33;
     Servoinput[11] == z04 + c33;
     allservo();
-
+//3번다리 X03으로
     Servoinput[6] = y03 - b11;
     Servoinput[10] = z03 + c11;
     allservo();
@@ -1392,7 +1366,7 @@ void to_walking() {
     Servoinput[6] = y03;
     Servoinput[10] = z03;
     allservo();
-
+//1번다리 X01으로
     Servoinput[4] = y01 - b11;
     Servoinput[8] = z01 + c11;
     allservo();
@@ -1403,14 +1377,14 @@ void to_walking() {
     Servoinput[4] = y01;
     Servoinput[8] = z01;
     allservo();
-
+//4번다리 X04으로
     Servoinput[7] = y04 + b11;
     Servoinput[11] = z04 - c11;
     allservo();
 
     Servoinput[3] = x04;
     allservo();
-
+//2번다리 X02으로
     Servoinput[7] = y04;
     Servoinput[11] = z04;
     allservo();
@@ -1426,7 +1400,6 @@ void to_walking() {
     Servoinput[9] = z02;
     allservo();
   }
-
 }
 
 void allservo() {
