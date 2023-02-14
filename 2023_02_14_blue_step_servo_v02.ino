@@ -56,7 +56,7 @@ const int SERVO_PIN[12] = {0, 1, 2,
                           };
 
 
-int x01 = 130; //크립시작할때각도
+int x01 = 130; //walking시작할때각도
 int x02 = 50;
 int x03 = 128;
 int x04 = 60;
@@ -82,40 +82,20 @@ int x33 = 30; //크립다리길게각도
 int y33 = 0;
 int z33 = 0;
 
-int b11 = 30; //롤링다리들때각도
-int c11 = 30;
+int rx01 = 170; //rolling 시작할때각도
+int rx02 = 10;
+int rx03 = 168;
+int rx04 = 12;
 
-int a22 = 70; //롤링다리짧게각도
-int b22 = 0;
-int c22 = 0;
+int ry01 = 172;
+int ry02 = 172;
+int ry03 = 172;
+int ry04 = 170;
 
-int a33 = 30; //롤링다리길게각도
-int b33 = 0;
-int c33 = 0;
-
-int b44 = 120; //
-int c44 = 45;
-
-int b55 = 0; //
-int c55 = 0;
-
-int b66 = 0; //
-int c66 = 0;
-
-int rx01 = 130; //크립시작할때각도
-int rx02 = 50;
-int rx03 = 128;
-int rx04 = 60;
-
-int ry01 = 30;
-int ry02 = 10;
-int ry03 = 30;
-int ry04 = 8;
-
-int rz01 = 33;
-int rz02 = 73;
-int rz03 = 33;
-int rz04 = 73;
+int rz01 = 3;
+int rz02 = 3;
+int rz03 = 3;
+int rz04 = 3;
 
 int Servoinputlast[12];
 int Servoinput[12] = {rx01,rx02,rx03,rx04,
