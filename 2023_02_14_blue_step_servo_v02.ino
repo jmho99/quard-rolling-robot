@@ -1141,20 +1141,20 @@ void to_rolling() {
     Servoinput[9] = z02;
     allservo2();
 //------------------------------------
-    Servoinput[4] = ry01-35-55;
-    Servoinput[6] = ry03-35-55;
-    Servoinput[8] = rz01;
-    Servoinput[10] = rz03;
-    Servoinput[5] = ry02 - 180;
-    Servoinput[7] = ry04 - 180;
-    Servoinput[9] = rz02;
-    Servoinput[11] = rz04;
+    Servoinput[4] = ry01-35-110;
+    Servoinput[6] = ry03-35-110;
+    Servoinput[8] = rz01+30+15;
+    Servoinput[10] = rz03+30+15;
+    Servoinput[5] = ry02 - ry02;
+    Servoinput[7] = ry04 - ry04;
+    Servoinput[9] = rz02+60;
+    Servoinput[11] = rz04+60;
     allservo2();
 
-    Servoinput[4] = ry01-35;
-    Servoinput[6] = ry03-35;
-    Servoinput[8] = rz01 + 35;
-    Servoinput[10] = rz03 + 35;
+    Servoinput[4] = ry01-30;
+    Servoinput[6] = ry03-30;
+    Servoinput[8] = rz01 + 30;
+    Servoinput[10] = rz03 + 28;
     allservo2();
 
     Servoinput[0] = rx01
@@ -1343,18 +1343,20 @@ void to_walking() {
     Servoinput[10] == rz03 &&
     Servoinput[11] == rz04) {
 
-    Servoinput[4] = ry01-35;
-    Servoinput[6] = ry03-35;
-    Servoinput[8] = rz01 + 35;
-    Servoinput[10] = rz03 + 35;
-    Servoinput[5] = ry02 - 180;
-    Servoinput[7] = ry04 - 180;
+    Servoinput[4] = ry01-30;
+    Servoinput[6] = ry03-30;
+    Servoinput[8] = rz01 + 30;
+    Servoinput[10] = rz03 + 28;
+    Servoinput[5] = ry02 - ry02;
+    Servoinput[7] = ry04 - ry04
+    Servoinput[9] = rz02 + 60;
+    Servoinput[11] = rz04 + 60;
     allservo2();
 
-    Servoinput[4] = ry01-35-55;
-    Servoinput[6] = ry03-35-55;
-    Servoinput[8] = rz01;
-    Servoinput[10] = rz03;
+    Servoinput[4] = ry01-30-110;
+    Servoinput[6] = ry03-30-110;
+    Servoinput[8] = rz01+30+15;
+    Servoinput[10] = rz03+30+15;
     allservo2();
 
     Servoinput[4] = y01;
